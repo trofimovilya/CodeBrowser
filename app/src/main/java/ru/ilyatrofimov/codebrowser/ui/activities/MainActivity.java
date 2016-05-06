@@ -236,7 +236,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     /**
      * Stops loading indicators
-     *
+     * <p/>
      * Will be called when loading process interrupts or there is an error or
      * page is successfully rendered
      */

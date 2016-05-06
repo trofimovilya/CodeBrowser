@@ -83,8 +83,8 @@ public class RefreshStopButton extends ImageButton {
     /**
      * Prepares set of animations
      *
-     * @param target object that will be animated
-     * @param hide play disappearing animation if True, appearing animation otherwise
+     * @param target   object that will be animated
+     * @param hide     play disappearing animation if True, appearing animation otherwise
      * @param duration duration of the animations in ms
      * @return AnimatorSet
      */
