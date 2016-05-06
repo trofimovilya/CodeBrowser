@@ -205,7 +205,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
      * Start loading and make loading indicators visible
      */
     private void startCodeLoading() {
-        if (mUrlEditText == null || mUrlToLoad.trim().isEmpty()) {
+        if (mUrlToLoad == null || mUrlToLoad.trim().isEmpty()) {
             return;
         }
 
