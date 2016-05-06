@@ -1,20 +1,22 @@
-package ru.ilyatrofimov.codebrowser.views;
+package ru.ilyatrofimov.codebrowser.ui.views;
 
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
 
 /**
- * Created by ILYATTR on 01/05/16.
+ * Swipe to refresh layout that allows to store WebView
+ *
+ * @author Ilya Trofimov
  */
-public class ChildScrollSwipeRefreshLayout extends SwipeRefreshLayout {
+public class CodeSwipeRefreshLayout extends SwipeRefreshLayout {
     private CanChildScrollUpCallback mCanChildScrollUpCallback;
 
-    public ChildScrollSwipeRefreshLayout(Context context) {
+    public CodeSwipeRefreshLayout(Context context) {
         super(context);
     }
 
-    public ChildScrollSwipeRefreshLayout(Context context, AttributeSet attrs) {
+    public CodeSwipeRefreshLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 

@@ -1,4 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Code Browser</string>
-    <string name="action_settings">Settings</string>
+    <string name="placeholder_home">Keep in mind that it\'s not a real browser and it doesn\'t support auto-redirecting, so you have to type full address</string>
+    <string name="placeholder_error">Unable to access the site\nCheck the Internet connection and entered URL</string>
+    <string name="type_url_hint">Type URL here</string>
+    <string name="refresh_button">Refresh button</string>
+    <string name="clear_entered_url_btn">Clear entered URL</string>
 </resources>

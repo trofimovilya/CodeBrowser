@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer name="icon_anim_duration">200</integer>
+    <integer name="refresh_icon_switch_anim_duration">400</integer>
+    <integer name="url_hide_anim_duration">100</integer>
+    <integer name="url_show_anim_duration">1000</integer>
 </resources>

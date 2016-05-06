@@ -1,6 +1,7 @@
-package ru.ilyatrofimov.codebrowser.views;
+package ru.ilyatrofimov.codebrowser.ui.views;
 
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -12,7 +13,9 @@ import android.widget.ImageButton;
 import ru.ilyatrofimov.codebrowser.R;
 
 /**
- * Created by ILYATTR on 02/05/16.
+ * Refresh/Stop Button View
+ *
+ * @author Ilya Trofimov
  */
 public class RefreshStopButton extends ImageButton {
     public static final int REFRESH_STATE = 1;
@@ -21,6 +24,7 @@ public class RefreshStopButton extends ImageButton {
     private Drawable mRefreshDrawable;
     private Drawable mStopDrawable;
     private int mState;
+    private int mAnimDuration;
 
     public RefreshStopButton(Context context) {
         super(context);
@@ -39,6 +43,7 @@ public class RefreshStopButton extends ImageButton {
 
     public void init() {
         this.mState = RefreshStopButton.REFRESH_STATE;
+        this.mAnimDuration = getResources().getInteger(R.integer.refresh_icon_switch_anim_duration) / 2;
         this.mRefreshDrawable = ContextCompat.getDrawable(this.getContext(), R.drawable.refresh);
         this.mStopDrawable = ContextCompat.getDrawable(this.getContext(), R.drawable.stop);
     }
@@ -58,43 +63,35 @@ public class RefreshStopButton extends ImageButton {
         }
     }
 
-    public int getState() {
-        return this.mState;
-    }
-
     private void switchDrawableWithAnimation(Drawable drawableFrom, final Drawable drawableTo) {
         this.setImageDrawable(drawableFrom);
 
-        AnimatorSet hideAnimator = prepareAnimatorSet(this, true);
-        hideAnimator.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-            }
-
+        AnimatorSet hideAnim = prepareAnimatorSet(this, true, mAnimDuration);
+        hideAnim.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 RefreshStopButton.this.setImageDrawable(drawableTo);
-
-                AnimatorSet showAnimator = prepareAnimatorSet(RefreshStopButton.this, false);
-                showAnimator.start();
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
+                AnimatorSet showAnim
+                        = prepareAnimatorSet(RefreshStopButton.this, false, mAnimDuration);
+                showAnim.start();
             }
         });
 
-        hideAnimator.start();
+        hideAnim.start();
     }
 
-    private AnimatorSet prepareAnimatorSet(Object target, boolean hide) {
+    /**
+     * Prepares set of animations
+     *
+     * @param target object that will be animated
+     * @param hide play disappearing animation if True, appearing animation otherwise
+     * @param duration duration of the animations in ms
+     * @return AnimatorSet
+     */
+    private AnimatorSet prepareAnimatorSet(Object target, boolean hide, int duration) {
         AnimatorSet animSet = new AnimatorSet();
         animSet.setInterpolator(new AccelerateDecelerateInterpolator());
-        animSet.setDuration(200);
+        animSet.setDuration(duration);
         animSet.playTogether(
                 ObjectAnimator.ofFloat(target, "alpha", hide ? 1f : 0.5f, hide ? 0.5f : 1f),
                 ObjectAnimator.ofFloat(target, "rotation", hide ? 0f : 180f, hide ? 180f : 360f),

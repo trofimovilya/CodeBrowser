@@ -5,6 +5,7 @@
     <color name="colorPrimaryDark">#999</color>
 
     <color name="background">#202746</color>
-    <color name="toolbar_icons">#FF484848</color>
-    <color name="toolbar_icons_transparent">#00484848</color>
+    <color name="iconToolbar">#484848</color>
+    <color name="urlContainerBackground">@android:color/white</color>
+    <color name="dimScreen">#8000</color>
 </resources>
